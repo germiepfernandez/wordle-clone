@@ -1,0 +1,139 @@
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+	font-family: Arial;
+}
+
+body {
+    background-color: #121213;
+    font-size: clamp(0.5rem, 2.5vmin, 1.5rem);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding-bottom: 1em;
+}
+
+#root {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+}
+
+h1 {
+    font-size: 1.2em;
+    border-bottom: 0.05em solid #eee;
+    color: white;
+    text-align: center;
+    margin-bottom: 1em;
+    padding-bottom: 0.5em;
+}
+
+.body {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+}
+
+/* rows */
+.row {
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	gap: 0.1em;
+}
+.row > div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 1.5em;
+	height: 1.5em;
+	color: white;
+	border: 0.05em solid #3a3a3c;
+	margin: 0.025em;
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 2em;
+}
+.row > div.green {
+	--background: #538d4e;
+	--border-color: #538d4e;
+}
+.row > div.grey {
+	--background: #3a3a3c;
+	--border-color: #3a3a3c;
+}
+.row > div.yellow {
+	--background: #b59f3b;
+	--border-color: #b59f3b;
+}
+.row.current > div.filled {
+	animation: bounce 0.2s ease-in-out forwards;
+}
+
+.keypad {
+	display: grid;
+	grid-template-columns: repeat(20, minmax(auto, 1.5rem));
+	grid-auto-rows: 3em;
+	gap: 0.25em;
+	justify-content: center;
+}
+.keypad > .key {
+	font-size: inherit;
+	grid-column: span 2;
+	border: none;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: #818384;
+	color: white;
+	text-transform: uppercase;
+	border-radius: 0.25em;
+	cursor: pointer;
+	user-select: none;
+}
+.keypad > .key.large {
+	grid-column: span 3;
+	padding: 0.5em;
+}
+.keypad > .key:hover,
+.keypad > .key:focus {
+	filter: brightness(calc(90% + var(--lightness, 51%)));
+}
+
+.keypad > button.green {
+	background: #538d4e;
+	color: #fff;
+	transition: all 0.3s ease-in;
+	--lightness: 43%;
+}
+.keypad > button.yellow {
+	background: #b59f3b;
+	color: #fff;
+	transition: all 0.3s ease-in;
+	--lightness: 47%;
+}
+.keypad > button.grey {
+	background: #3a3a3c;
+	color: #fff;
+	transition: all 0.3s ease-in;
+	--lightness: 23%;
+}
+
+@keyframes bounce {
+	0% {
+		transform: scale(1);
+		border-color: #ddd;
+	}
+	50% {
+		transform: scale(1.2);
+	}
+	100% {
+		transform: scale(1);
+		border-color: #333;
+	}
+}
